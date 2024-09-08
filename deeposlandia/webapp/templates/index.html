@@ -1,0 +1,119 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="od-header">
+  <h1>Deeposlandia</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <h3>About</h3>
+    <p>
+      Use trained neural network in order to predict semantic segmentation
+      labels in various image use cases.
+    </p>
+  </div>
+  <a class="button button-primary" href="https://github.com/oslandia/deeposlandia">Github repo</a>
+  <a class="button button-primary" href="https://oslandia.com">Oslandia website</a>
+  <a class="button button-primary" href="http://data.oslandia.io">Data webpage</a>
+</div>
+
+
+<h2>Demo</h2>
+
+<div class="container">
+  <div class="row widget">
+    <div class="one-half column home-widget">
+      <div class="panel panel-default">
+        <div class="panel-header">
+	  <h5><a href="https://www.mapillary.com/dataset/vistas">Mapillary</a> (13 labels)</h5>
+	</div>
+        <div class="panel-body">
+	  <p>
+	    <a href="{{ url_for('demo_homepage', model='featdet', dataset='mapillary') }}" title="feature detection">
+	      <img src="{{url_for('static', filename='sample_image/mapillary_fd.png')}}" width="48%" height="200px">
+	    </a>
+	    <a href="{{ url_for('demo_homepage', model='semseg', dataset='mapillary') }}" title="semantic segmentation">
+	      <img src="{{url_for('static', filename='sample_image/mapillary_ss.png')}}" width="48%" height="200px">
+	    </a>
+	    <br>Street-scene imagery
+	  </p>
+	</div>
+      </div>
+    </div>
+    <div class="one-half column home-widget">
+      <div class="panel panel-default">
+        <div class="panel-header">
+	  <h5>Random shapes (3 labels)</h5>
+	</div>
+        <div class="panel-body">
+	  <p>
+	    <a href="{{ url_for('demo_homepage', model='featdet', dataset='shapes') }}" title="feature detection">
+	      <img src="{{url_for('static', filename='sample_image/shapes_fd.png')}}" width="48%" height="200px">
+	    </a>
+	    <a href="{{ url_for('demo_homepage', model='semseg', dataset='shapes') }}" title="semantic segmentation">
+	      <img src="{{url_for('static', filename='sample_image/shapes_ss.png')}}" width="48%" height="200px">
+	    </a>
+	    <br>
+	    Toy dataset :-)
+	  </p>
+	</div>
+      </div>
+    </div>
+    <div class="one-half column home-widget">
+      <div class="panel panel-default">
+        <div class="panel-header">
+	  <h5><a href="https://project.inria.fr/aerialimagelabeling/">Aerial image</a> (2 labels)</h5>
+	</div>
+        <div class="panel-body">
+	  <p>
+	    <a href="{{ url_for('demo_homepage', model='semseg', dataset='aerial') }}" title="semantic segmentation">
+	      <img src="{{url_for('static', filename='sample_image/aerial_ss.png')}}" width="96%" height="200px">
+	    </a>
+	    <br>Aerial imagery
+	  </p>
+	</div>
+      </div>
+    </div>
+    <div class="one-half column home-widget">
+      <div class="panel panel-default">
+        <div class="panel-header">
+	  <h5><a href="https://blog.werobotics.org/2018/08/06/welcome-to-the-open-ai-tanzania-challenge/">Open AI Tanzania</a> (4 labels)</h5>
+	</div>
+        <div class="panel-body">
+	  <p>
+	    <a href="{{ url_for('demo_homepage', model='semseg', dataset='tanzania') }}" title="semantic segmentation">
+	      <img src="{{url_for('static', filename='sample_image/tanzania_ss.png')}}" width="96%" height="200px">
+	    </a>
+	    <br>Aerial imagery
+	  </p>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Try it yourself!</h2>
+
+<div class="container">
+  <div class="row widget">
+    <div class="one-half column home-widget">
+      <div class="panel panel-default">
+        <div class="panel-header">
+	  <h5>Try uploading your own picture...</h5>
+	</div>
+        <div class="panel-body">
+	  <p>
+	    <a href="{{ url_for('load_predictor')}}" title="semantic segmentation">
+	      <img src="{{url_for('static', filename='sample_image/try_it_yourself.png')}}" width="90%" height="200px">
+	    </a>
+	    <br>Street-scene imagery, 13 labels
+	  </p>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

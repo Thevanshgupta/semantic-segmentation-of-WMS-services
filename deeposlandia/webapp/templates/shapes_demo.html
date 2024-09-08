@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<script>
+  const dataset = "shapes";
+  const model = "{{ model }}";
+</script>
+
+<div class="od-header">
+  <h1>Shapes: {{ model }}</h1>
+</div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"
+        aria-current="page"><a href="{{url_for('index')}}">Home</a>
+    </li>
+    <li class="breadcrumb-item"
+        aria-current="page">Shapes</a>
+    </li>  </ol>
+  </ol>
+</nav>
+
+<h2>Demo</h2>
+
+<p>Click on the below button to generate a random picture with geometric shapes, and to display the corresponding label predictions.</p>
+
+<button id="predict_labels" value="Generate a new image" dataset="shapes">Generate a new image</button>
+
+<div class="container">
+  <div class="row widget">
+
+    <div class="one-third column home-widget dataset">
+      <div class="panel panel-default">
+        <div class="panel-header">
+	  <h5>Raw image</h5>
+	</div>
+        <div class="panel-body">
+	  <img id="raw_image" height="70%" width="100%" src="{{url_for('static', filename=image_filename)}}">
+	</div>
+      </div>
+    </div>
+
+    <div class="one-third column home-widget dataset">
+      <div class="panel panel-default">
+        <div class="panel-header">
+	  <h5>Ground-truth</h5>
+	</div>
+        <div class="panel-body">
+	  <img id="ground_truth" height="70%" width="100%" src="{{url_for('static', filename=label_filename)}}">
+	  <br>
+	  {% for value, color in ground_truth_labels %}
+	  <span class="color-label" style="background-color: {{ color }}">{{ value }}</span>
+	  {% endfor %}
+	</div>
+      </div>
+    </div>
+
+    <div class="one-third column home-widget dataset">
+      <div class="panel panel-default">
+        <div class="panel-header">
+	  <h5>Prediction</h5>
+	</div>
+        <div class="panel-body">
+	  {% if model=="featdet" %}
+	  {% for value, proba, color in predicted_labels %}
+	  <span class="color-label" style="background-color: {{ color }}">{{ value }}: {{ proba }}%</span>
+	  {% endfor %}
+	  {% else %}
+	  <img id="predictions" height="70%" width="100%" src="{{url_for('static', filename=predicted_filename)}}">
+	  <br>
+	  {% for value, color in predicted_labels %}
+	  <span class="color-label" style="background-color: {{ color }}">{{ value }}</span>
+	  {% endfor %}
+	  {% endif %}
+	</div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<h2>Training procedure</h2>
+
+<p>
+  The model used here has a simple architecture where three transposed
+  convolution layers follow three standard convolution layers. It has been
+  trained during 30 epochs with a set of 18000 randomly generated images
+  involving an other set of 2000 random images at the end of each training
+  epoch..
+</p>
+
+<h2>Description</h2>
+
+<p>This toy dataset contains three labels, <emph>i.e.</emph> squares, circles
+and triangles. There is at most one single items for each shape: as a
+consequence, some pictures may be empty!
+</p>
+
+{% endblock %}
+
+{% block appjs %}
+
+<script src="{{ url_for('static', filename='demo_predictor.js') }}" type="text/javascript"></script>
+
+{% endblock %}

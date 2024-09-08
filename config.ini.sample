@@ -1,0 +1,19 @@
+[status]
+status = dev
+
+[running]
+processes = 1
+
+[symlink]
+predicted = /path/to/predicted/images/
+shapes = /path/to/shape/dataset/
+mapillary = /path/to/mapillary/dataset/
+mapillary_agg = /path/to/agregated/mapillary/dataset/
+aerial = /path/to/aerial/dataset/
+tanzania = /path/to/tanzania/dataset/
+
+[folder]
+project_folder = /path/to/static/files/
+
+[key]
+secret_key = enter-your-app-key
