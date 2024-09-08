@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 This project aims at showcasing some Deep Learning use cases in terms of image
 analysis, especially regarding semantic segmentation.
@@ -166,3 +167,6 @@ The program license is described in [LICENSE.md](./LICENSE.md).
 ___
 
 Oslandia, April 2018
+=======
+# semantic-segmentation-of-WMS-services
+>>>>>>> c2a9a20d3225d92a198f04e3bcda65f6816f1ca6
